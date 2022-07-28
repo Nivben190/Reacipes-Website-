@@ -1,11 +1,8 @@
 import React from 'react'
-
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components'
-const RecipeCard = (props) => {
-    
-  
-   
+import styles from "./index.module.css"
+const RecipeCard = (props) => {  
    const Header=styled(Card.Title)`
    text-align: center;
    font-size: 26px;
@@ -32,24 +29,26 @@ const RecipeCard = (props) => {
     const ReacipesImg =styled.img`
          src:'${props.img}';
          width:100%;
+         max-width: fit-content;
+         max-height: 16rem;
          margin-left:-15px;
          height:100%;
          margin-bottom: -15px;
          margin-right: -15px;
          
     `
-    function getRecipeWebsite(event)
-    {
-     event.preventDefault();
-       
-    }
+    
       return (
-       <MyCard onClick={getRecipeWebsite} >
+       <MyCard>
+       <a className={styles.a} href={props.src}>
        <Header>{props.title}</Header>   
+       </a>
        <Card.Body>
        <ReacipesImg src={props.img} alt={props.alt} />
        </Card.Body>
-     </MyCard>  )
+     </MyCard>  
+   
+     )
 }
 
 export default RecipeCard

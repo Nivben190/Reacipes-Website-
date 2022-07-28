@@ -17,8 +17,7 @@ const HomePage = () => {
             <div className={styles.Homediv}>
               <h1>How Its Works</h1>       
              <CardsDiv/>
-             <WelcomeDiv/>
-             
+             <WelcomeDiv/>    
         </div>
     </div>
   )

@@ -9,20 +9,25 @@ import NavbarComponent from '../Navbar/NavbarComponent'
 import RecipeCard from './RecipeCard';
 const RecipesPage = () => {
   const [Recipes,setRecipes]=useState([])
+  const [query,setQuery] = useState("");
  useEffect(() => {
-  async function getData()
-   {
-        const url ="https://api.spoonacular.com/recipes/complexSearch?apiKey=66c236119ce0410b851b69b287740e67&query=pasta&number=50"
-       const data =await axios.get(url); 
-      localStorage.setItem('reacipes', JSON.stringify(data.data.results));
-       setRecipes(data.data.results);
-       console.log(data.data.results);
+
+  async function getRecipes()
+  {
+    const data =await axios.get(`https:/www.themealdb.com/api/json/v1/1/search.php?f=s`);
+     localStorage.setItem('reacipes', JSON.stringify(data.data));
+     setRecipes(data.data.meals);
   }
-     getData();
+  getRecipes();
  }, []) 
- function kkk(){
-  alert(JSON.stringify(Recipes[0]))
+ 
+  async function searchRecipes(event)
+ {   
+    setQuery(event.target.value);
+    const data =await axios.get(`https:/www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+    setRecipes(data.data.meals);
  }
+
   return (
     <div>
     <div className={styles.bgDiv}>
@@ -30,10 +35,10 @@ const RecipesPage = () => {
         <BgDiv/>
     </div>
     <div className={MyStyle.container}>
-      <h1 onClick={kkk}>Cook With Home Chef </h1>
-       <input name='search' type='search' placeholder="Search for a recipe"/>
+      <h1 >Cook With Home Chef </h1>
+       <input className={MyStyle.input} name='search' type='search' onChange={searchRecipes} placeholder="Search for a recipe"/>
        <Grid container spacing ={2} >
-       {Recipes&&Array.from(Recipes).map((recipe)=><Grid align="center" item xs={12} sm={12} md={6} lg={4}><RecipeCard   img={recipe.image} title={recipe.title}/> </Grid>)}
+       {Recipes&&Array.from(Recipes).map((recipe,index)=><Grid align="center" key={index}  item xs={12} sm={12} md={6} lg={4}><RecipeCard  id={index} key={index} img={recipe.strMealThumb}  src={recipe.strSource} title={recipe.strMeal}/> </Grid>)}
        </Grid>
     </div>
       
