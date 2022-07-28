@@ -1,0 +1,36 @@
+.nav
+{
+    background-color:rgba(0,0,0,0.5);
+    height: 80px;
+    font-size: 20px;
+    color: white;  
+}
+.navLink
+{
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.2s ease-in;
+    text-decoration: none;
+    margin-left: 40px;
+}
+.navLink:hover
+{
+    color: orange;
+
+}
+.navBrand
+{
+    font-size: 30px;
+color: white;
+ margin-right: 30px;
+ transition: 0.2s ease-in;
+ font-weight: bold;
+
+}
+.navBrand:hover
+{
+    color: white;
+  transform: scale(1.1, 1.1);
+}
