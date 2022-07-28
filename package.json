@@ -2,6 +2,9 @@
   "name": "websiterecipe",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "v16.15.0"
+  },
   "dependencies": {
     "@coreui/coreui": "^4.2.0",
     "@emotion/react": "^11.9.3",
@@ -47,9 +50,7 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ],
-    "engines": {
-      "node": "6.11.1"
-    }
+    ]
+   
   }
 }
