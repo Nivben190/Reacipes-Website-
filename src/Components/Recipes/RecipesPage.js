@@ -15,9 +15,8 @@ const RecipesPage = () => {
   async function getRecipes()
   {
     const data =await axios.get(`https:/www.themealdb.com/api/json/v1/1/search.php?f=s`);
-    console.log(data);
-    //  localStorage.setItem('reacipes', JSON.stringify(data.data));
-    //  setRecipes(data.data.meals);
+      localStorage.setItem('reacipes', JSON.stringify(data.data));
+      setRecipes(data.data.meals);
   }
   getRecipes();
  }, []) 
