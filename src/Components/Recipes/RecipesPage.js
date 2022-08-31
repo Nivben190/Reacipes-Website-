@@ -14,19 +14,23 @@ const RecipesPage = () => {
 
   async function getRecipes()
   {
-    const data =await axios.get(`https:/www.themealdb.com/api/json/v1/1/search.php?f=s`);
-      localStorage.setItem('reacipes', JSON.stringify(data.data));
-      setRecipes(data.data.meals);
+    const url="https://api.spoonacular.com/food/search?apiKey=66c236119ce0410b851b69b287740e67"
+    const data =await axios.get(url);
+     localStorage.setItem('reacipes', JSON.stringify(data.data.searchResults[0].results));
+      setRecipes(data.data.searchResults[0].results);
   }
   getRecipes();
  }, []) 
  
   async function searchRecipes(event)
  {   
+  
     setQuery(event.target.value);
-    const data =await axios.get(`https:/www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
-    setRecipes(data.data.meals);
- }
+    const url=`https://api.spoonacular.com/food/search?query=${query}&&apiKey=66c236119ce0410b851b69b287740e67`
+
+    const data =await axios.get(url);
+    setRecipes(data.data.searchResults[0].results);
+  }
 
   return (
     <div>
@@ -38,7 +42,7 @@ const RecipesPage = () => {
       <h1 >Cook With Home Chef </h1>
        <input className={MyStyle.input} name='search' type='search' onChange={searchRecipes} placeholder="Search for a recipe"/>
        <Grid container spacing ={2} >
-       {Recipes&&Array.from(Recipes).map((recipe,index)=><Grid align="center" key={index}  item xs={12} sm={12} md={6} lg={4}><RecipeCard  id={index} key={index} img={recipe.strMealThumb}  src={recipe.strSource} title={recipe.strMeal}/> </Grid>)}
+       {Recipes&&Array.from(Recipes).map((recipe,index)=><Grid align="center" key={index}  item xs={12} sm={12} md={6} lg={4}><RecipeCard  id={index} key={index} img={recipe.image}  src={recipe.link} title={recipe.name}/> </Grid>)}
        </Grid>
     </div>
       
