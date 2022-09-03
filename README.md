@@ -4,8 +4,8 @@
 
 My Own Recipe Website, with designed home page . 
 
- # are you looking for a recipe for your meal?? 
- # just enter my website and search by the ingridients!!
+ *  are you looking for a recipe for your meal?? 
+ *  just enter my website and search by the ingridients!!
 
 
 
